@@ -27,6 +27,148 @@ Telegram: @PremiumVSTR
 
 ---
 
+## Модель базы данных (3 таблицы)
+
+### Структура базы данных
+
+#### Таблица: collection_point (Контейнерные площадки)  
+Содержит информацию о площадках и районах.
+
+| Поле       | Тип          | Ограничения           | Описание                  |
+|------------|--------------|----------------------|---------------------------|
+| point_id   | SERIAL       | PRIMARY KEY          | Уникальный идентификатор площадки |
+| address    | VARCHAR(500) | UNIQUE, NOT NULL     | Адрес площадки            |
+| district   | VARCHAR(100) | NOT NULL             | Название района           |
+| is_active  | BOOLEAN      | DEFAULT TRUE         | Статус активности         |
+
+#### Таблица: waste_operator (Операторы вывоза)  
+Хранит информацию о компаниях-операторах.
+
+| Поле         | Тип          | Ограничения           | Описание                  |
+|--------------|--------------|-----------------------|---------------------------|
+| operator_id  | SERIAL       | PRIMARY KEY           | Уникальный идентификатор оператора |
+| company_name | VARCHAR(200) | UNIQUE, NOT NULL      | Наименование компании      |
+| phone        | VARCHAR(20)  | NOT NULL              | Контактный телефон        |
+
+#### Таблица: waste_removal_act (Акты вывоза)  
+Основная таблица со всеми данными о вывозе.
+
+| Поле         | Тип            | Ограничения                                | Описание                       |
+|--------------|----------------|-------------------------------------------|--------------------------------|
+| act_id       | SERIAL         | PRIMARY KEY                              | Уникальный идентификатор акта  |
+| point_id     | INTEGER        | FOREIGN KEY REFERENCES collection_point(point_id) | Ссылка на площадку             |
+| operator_id  | INTEGER        | FOREIGN KEY REFERENCES waste_operator(operator_id) | Ссылка на оператора            |
+| removal_date | DATE           | NOT NULL                                 | Дата вывоза                   |
+| waste_type   | VARCHAR(50)    | NOT NULL                                 | Тип отходов (стекло/пластик/бумага) |
+| weight_kg   | DECIMAL(10,2)  | NOT NULL CHECK (weight_kg > 0)           | Вес отходов в кг              |
+
+### Связи между таблицами
+- `collection_point` → `waste_removal_act`: Один ко многим (одна площадка может иметь много актов вывоза)  
+- `waste_operator` → `waste_removal_act`: Один ко многим (один оператор может выполнить много вывозов)  
+
+### Бизнес-правила
+- Адрес контейнерной площадки должен быть уникальным  
+- Название компании-оператора должно быть уникальным  
+- Вес отходов должен быть больше 0  
+- Нельзя регистрировать два вывоза одного типа отходов с одной площадки в один день  
+- Дата вывоза обязательна для заполнения  
+
+## Физическая модель (DDL)
+```sql
+-- 1. Таблица контейнерных площадок
+CREATE TABLE collection_point (
+    point_id SERIAL PRIMARY KEY,
+    address VARCHAR(500) UNIQUE NOT NULL,
+    district VARCHAR(100) NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE
+);
+
+-- 2. Таблица операторов вывоза
+CREATE TABLE waste_operator (
+    operator_id SERIAL PRIMARY KEY,
+    company_name VARCHAR(200) UNIQUE NOT NULL,
+    phone VARCHAR(20) NOT NULL
+);
+
+-- 3. Таблица актов вывоза
+CREATE TABLE waste_removal_act (
+    act_id SERIAL PRIMARY KEY,
+    point_id INTEGER NOT NULL,
+    operator_id INTEGER NOT NULL,
+    removal_date DATE NOT NULL,
+    waste_type VARCHAR(50) NOT NULL,
+    weight_kg DECIMAL(10,2) NOT NULL CHECK (weight_kg > 0),
+    
+    FOREIGN KEY (point_id) REFERENCES collection_point(point_id) ON DELETE CASCADE,
+    FOREIGN KEY (operator_id) REFERENCES waste_operator(operator_id) ON DELETE RESTRICT,
+    
+    -- Уникальное ограничение: нельзя дважды зарегистрировать вывоз одного типа с одной площадки в один день
+    UNIQUE (point_id, waste_type, removal_date)
+);
+
+-- Индексы для оптимизации
+CREATE INDEX idx_removal_date ON waste_removal_act(removal_date);
+CREATE INDEX idx_point_date ON waste_removal_act(point_id, removal_date);
+CREATE INDEX idx_waste_type ON waste_removal_act(waste_type);
+```
+## Анализ нормальных форм
+
+### 1. Первая нормальная форма (1NF)
+**Требования:**  
+- Все атрибуты атомарны  
+- Отсутствуют повторяющиеся группы  
+- Определен первичный ключ  
+
+**Анализ:**  
+- **collection_point:** Все атрибуты атомарны, первичный ключ `point_id`, нет повторяющихся групп. ✅  
+- **waste_operator:** Все атрибуты атомарны, первичный ключ `operator_id`, нет повторяющихся групп. ✅  
+- **waste_removal_act:** Все атрибуты атомарны, первичный ключ `act_id`, нет повторяющихся групп. ✅  
+
+**Вывод:** Все таблицы соответствуют 1NF.
+
+---
+
+### 2. Вторая нормальная форма (2NF)
+**Требования:**  
+- Соответствие 1NF  
+- Все неключевые атрибуты полностью зависят от всего первичного ключа  
+
+**Анализ:**  
+- **collection_point:** Все атрибуты зависят от `point_id`. ✅  
+- **waste_operator:** Все атрибуты зависят от `operator_id`. ✅  
+- **waste_removal_act:** Все атрибуты зависят от `act_id`. ✅  
+
+**Вывод:** Все таблицы соответствуют 2NF.
+
+---
+
+### 3. Третья нормальная форма (3NF)
+**Требования:**  
+- Соответствие 2NF  
+- Отсутствие транзитивных зависимостей  
+
+**Анализ:**  
+- **collection_point:** Нет транзитивных зависимостей. ✅  
+- **waste_operator:** Нет транзитивных зависимостей. ✅  
+- **waste_removal_act:** Нет транзитивных зависимостей, но поле `waste_type` содержит строковые значения, которые могут дублироваться. Идеально — выделить отдельную таблицу типов отходов, но для минимализма допускается так. ⚠️  
+
+**Вывод:** Таблицы в основном соответствуют 3NF с допустимым компромиссом для `waste_type`.
+
+---
+
+### 4. Нормальная форма Бойса-Кодда (BCNF)
+**Требования:**  
+- Каждая детерминанта является потенциальным ключом  
+
+**Анализ:**  
+- **collection_point:** Потенциальные ключи `point_id`, `address`. ✅  
+- **waste_operator:** Потенциальные ключи `operator_id`, `company_name`. ✅  
+- **waste_removal_act:** Потенциальный ключ `act_id`. ✅  
+
+**Вывод:** Все таблицы соответствуют BCNF.
+
+---
+
 # Лабораторная работа 1
 ## ER-диаграмма 
 ![Иллюстрация к проекту](https://github.com/PremiumVSTR/-/blob/main/othodi.png)
