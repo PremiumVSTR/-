@@ -103,11 +103,12 @@ CREATE TABLE waste_removal_act (
     FOREIGN KEY (operator_id) REFERENCES waste_operator(id) ON DELETE RESTRICT
 );
 
+-- Индексы для оптимизации
+CREATE INDEX idx_removal_date ON waste_removal_act(removal_date);
+CREATE INDEX idx_point_type ON waste_removal_act(point_id, type_id);```
+
 ---
 
 # ER-диаграмма 
 ![Иллюстрация к проекту](https://github.com/PremiumVSTR/-/blob/main/er-diagramma.png)
 
--- Индексы для оптимизации
-CREATE INDEX idx_removal_date ON waste_removal_act(removal_date);
-CREATE INDEX idx_point_type ON waste_removal_act(point_id, type_id);
