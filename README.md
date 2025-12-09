@@ -106,7 +106,7 @@ CREATE TABLE waste_removal_act (
 -- Индексы для оптимизации
 CREATE INDEX idx_removal_date ON waste_removal_act(removal_date);
 CREATE INDEX idx_point_type ON waste_removal_act(point_id, type_id);
-
+```
 ---
 ## Лабораторная работа 1
 # ER-диаграмма 
