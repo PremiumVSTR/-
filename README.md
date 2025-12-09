@@ -108,7 +108,11 @@ CREATE INDEX idx_removal_date ON waste_removal_act(removal_date);
 CREATE INDEX idx_point_type ON waste_removal_act(point_id, type_id);
 ```
 ---
+
 # Лабораторная работа 1
 ## ER-диаграмма 
 ![Иллюстрация к проекту](https://github.com/PremiumVSTR/-/blob/main/er-diagramma.png)
 
+---
+
+# Лабораторная работа 2
