@@ -188,7 +188,9 @@ CREATE INDEX idx_waste_type ON waste_removal_act(waste_type);
 
 ## Заполнение таблиц
 <img width="790" height="596" alt="image" src="https://github.com/user-attachments/assets/d2d12a7f-77c6-4082-92ed-8db16cdba5b2" />
-### Проверка что данные были введены
+
+## Проверка что данные были введены
+
 <img width="639" height="283" alt="image" src="https://github.com/user-attachments/assets/17caa80d-f180-4a33-a673-b1949a2d89d9" />
 <img width="643" height="291" alt="image" src="https://github.com/user-attachments/assets/1cff0cfe-aef0-4020-814c-00e681ed19ca" />
 <img width="686" height="265" alt="image" src="https://github.com/user-attachments/assets/5ad4a37b-9b1f-4c5e-8711-5906ad811e39" />
