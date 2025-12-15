@@ -178,9 +178,10 @@ CREATE INDEX idx_waste_type ON waste_removal_act(waste_type);
 # Лабораторная работа 2
 ## DDL-запросы
 Таблица collection_point
-<img width="901" height="548" alt="image" src="https://github.com/user-attachments/assets/69e3fc51-74d2-4ba9-9e5a-50d92b109961" />
+
 Таблица waste_operator
 <img width="895" height="542" alt="image" src="https://github.com/user-attachments/assets/505bfa72-73ea-4fc5-8ee1-8f1f3cd3df0d" />
+
 Таблица waste_removal_act
 <img width="896" height="545" alt="image" src="https://github.com/user-attachments/assets/e2cd6ab9-0b35-4da5-a008-56e122708d29" />
 
