@@ -180,7 +180,7 @@ CREATE INDEX idx_waste_type ON waste_removal_act(waste_type);
 Таблица collection_point
 <img width="901" height="404" alt="image" src="https://github.com/user-attachments/assets/bb78cca1-9c46-491f-bf73-42537ac4311d" />
 Таблица waste_operator
-<img width="894" height="292" alt="image" src="https://github.com/user-attachments/assets/d4f01d93-aedd-4711-b923-d33984924b08" />
+<img width="895" height="542" alt="image" src="https://github.com/user-attachments/assets/505bfa72-73ea-4fc5-8ee1-8f1f3cd3df0d" />
 Таблица waste_removal_act
 <img width="896" height="545" alt="image" src="https://github.com/user-attachments/assets/e2cd6ab9-0b35-4da5-a008-56e122708d29" />
 
