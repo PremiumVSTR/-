@@ -39,7 +39,6 @@ Telegram: @PremiumVSTR
 | point_id   | SERIAL       | PRIMARY KEY          | Уникальный идентификатор площадки |
 | address    | VARCHAR(500) | UNIQUE, NOT NULL     | Адрес площадки            |
 | district   | VARCHAR(100) | NOT NULL             | Название района           |
-| is_active  | BOOLEAN      | DEFAULT TRUE         | Статус активности         |
 
 #### Таблица: waste_operator (Операторы вывоза)  
 Хранит информацию о компаниях-операторах.
@@ -178,13 +177,13 @@ CREATE INDEX idx_waste_type ON waste_removal_act(waste_type);
 # Лабораторная работа 2
 ## DDL-запросы
 Таблица collection_point
-<img width="895" height="546" alt="image" src="https://github.com/user-attachments/assets/33a3023e-742f-422a-ad40-1db4a42ebc21" />
+<img width="896" height="540" alt="image" src="https://github.com/user-attachments/assets/8db6790a-a62b-4e40-9b4e-3a04e3c1f07d" />
 
 Таблица waste_operator
-<img width="895" height="542" alt="image" src="https://github.com/user-attachments/assets/505bfa72-73ea-4fc5-8ee1-8f1f3cd3df0d" />
+<img width="890" height="548" alt="image" src="https://github.com/user-attachments/assets/41c9a8cc-29f1-4f05-bfb3-8aa84b3f0542" />
 
 Таблица waste_removal_act
-<img width="896" height="545" alt="image" src="https://github.com/user-attachments/assets/e2cd6ab9-0b35-4da5-a008-56e122708d29" />
+<img width="899" height="543" alt="image" src="https://github.com/user-attachments/assets/f71642e4-a868-46d4-b574-38959e004476" />
 
 ## Заполнение таблиц
 <img width="790" height="596" alt="image" src="https://github.com/user-attachments/assets/d2d12a7f-77c6-4082-92ed-8db16cdba5b2" />
