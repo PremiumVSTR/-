@@ -204,4 +204,164 @@ CREATE INDEX idx_waste_type ON waste_removal_act(waste_type);
 ## Запрос 2: График и частота вывоза для заданной контейнерной площадки
 <img width="989" height="756" alt="image" src="https://github.com/user-attachments/assets/39d731c9-151e-413b-aa28-a48d61020ec9" />
 
+# Лабораторная работа 3
+## Представления для выходных документов
+## ПРЕДСТАВЛЕНИЕ 1: Отчет по весу отходов за месяц
+<img width="627" height="320" alt="image" src="https://github.com/user-attachments/assets/21ecb943-cc2c-42c4-bd5a-ae72f07f0fb7" />
 
+## ПРЕДСТАВЛЕНИЕ 2: График вывоза для площадок 
+<img width="645" height="429" alt="image" src="https://github.com/user-attachments/assets/a2a1c379-ed70-46dc-a9d3-94d11ad575c2" />
+
+## ПРОЦЕДУРА 1: Добавить новый акт вывоза
+<img width="706" height="715" alt="image" src="https://github.com/user-attachments/assets/929161f2-f2ab-4796-9065-46b8d307e4a8" />
+```
+CREATE OR REPLACE VIEW "Martynovich2261".vw_point_schedule AS
+SELECT 
+    cp.point_id AS "ID площадки",
+    cp.address AS "Адрес",
+    cp.district AS "Район",
+    wra.removal_date AS "Дата вывоза",
+    wra.waste_type AS "Тип отходов",
+    wra.weight_kg AS "Вес (кг)",
+    wo.company_name AS "Оператор"
+FROM "Martynovich2261".waste_removal_act wra
+JOIN "Martynovich2261".collection_point cp ON wra.point_id = cp.point_id
+JOIN "Martynovich2261".waste_operator wo ON wra.operator_id = wo.operator_id
+ORDER BY cp.point_id, wra.removal_date DESC;
+
+-- Комментарий
+COMMENT ON VIEW "Martynovich2261".vw_point_schedule 
+IS 'График вывоза отходов по всем контейнерным площадкам';
+
+-- ============================================
+-- ПРОЦЕДУРА 1: Добавить новый акт вывоза (ИЗМЕНЯЕТ БД)
+-- ============================================
+CREATE OR REPLACE PROCEDURE "Martynovich2261".sp_add_removal(
+    p_point_id INTEGER,
+    p_operator_id INTEGER,
+    p_removal_date DATE,
+    p_waste_type VARCHAR(50),
+    p_weight_kg DECIMAL(10,2),
+    OUT p_result_message VARCHAR(200)
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_point_exists BOOLEAN;
+    v_operator_exists BOOLEAN;
+    v_new_act_id INTEGER;
+BEGIN
+    -- Проверяем существование площадки
+    SELECT EXISTS(
+        SELECT 1 FROM "Martynovich2261".collection_point 
+        WHERE point_id = p_point_id
+    ) INTO v_point_exists;
+    
+    IF NOT v_point_exists THEN
+        p_result_message := 'ОШИБКА: Площадка с ID=' || p_point_id || ' не найдена';
+        RETURN;
+    END IF;
+    
+    -- Проверяем существование оператора
+    SELECT EXISTS(
+        SELECT 1 FROM "Martynovich2261".waste_operator 
+        WHERE operator_id = p_operator_id
+    ) INTO v_operator_exists;
+    
+    IF NOT v_operator_exists THEN
+        p_result_message := 'ОШИБКА: Оператор с ID=' || p_operator_id || ' не найден';
+        RETURN;
+    END IF;
+    
+    -- Проверяем вес
+    IF p_weight_kg <= 0 THEN
+        p_result_message := 'ОШИБКА: Вес должен быть больше 0';
+        RETURN;
+    END IF;
+    
+    -- Проверяем дату (не может быть в будущем)
+    IF p_removal_date > CURRENT_DATE THEN
+        p_result_message := 'ОШИБКА: Дата вывоза не может быть в будущем';
+        RETURN;
+    END IF;
+    
+    -- Пробуем вставить запись
+    BEGIN
+        INSERT INTO "Martynovich2261".waste_removal_act 
+            (point_id, operator_id, removal_date, waste_type, weight_kg)
+        VALUES 
+            (p_point_id, p_operator_id, p_removal_date, p_waste_type, p_weight_kg)
+        RETURNING act_id INTO v_new_act_id;
+        
+        p_result_message := 'УСПЕХ: Акт вывоза №' || v_new_act_id || ' добавлен';
+        
+    EXCEPTION 
+        WHEN unique_violation THEN
+            p_result_message := 'ОШИБКА: Вывоз этого типа отходов уже зарегистрирован на эту дату для этой площадки';
+        WHEN OTHERS THEN
+            p_result_message := 'ОШИБКА: ' || SQLERRM;
+    END;
+END;
+$$;
+
+-- Комментарий
+COMMENT ON PROCEDURE "Martynovich2261".sp_add_removal 
+IS 'Добавляет новый акт вывоза в базу данных с проверкой данных';
+
+```
+## ПРОЦЕДУРА 2: Обновить вес акта вывоза
+<img width="674" height="337" alt="image" src="https://github.com/user-attachments/assets/ded1b267-0578-41e1-8d46-f0822f9173fe" />
+
+```
+CREATE OR REPLACE PROCEDURE "Martynovich2261".sp_update_removal_weight(
+    p_act_id INTEGER,
+    p_new_weight_kg DECIMAL(10,2),
+    OUT p_result_message VARCHAR(200)
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_old_weight DECIMAL(10,2);
+    v_rows_updated INTEGER;
+BEGIN
+    -- Проверяем существование акта
+    IF NOT EXISTS(
+        SELECT 1 FROM "Martynovich2261".waste_removal_act 
+        WHERE act_id = p_act_id
+    ) THEN
+        p_result_message := 'ОШИБКА: Акт вывоза с ID=' || p_act_id || ' не найден';
+        RETURN;
+    END IF;
+    
+    -- Проверяем новый вес
+    IF p_new_weight_kg <= 0 THEN
+        p_result_message := 'ОШИБКА: Новый вес должен быть больше 0';
+        RETURN;
+    END IF;
+    
+    -- Получаем старый вес для информации
+    SELECT weight_kg INTO v_old_weight 
+    FROM "Martynovich2261".waste_removal_act 
+    WHERE act_id = p_act_id;
+    
+    -- Обновляем вес
+    UPDATE "Martynovich2261".waste_removal_act 
+    SET weight_kg = p_new_weight_kg
+    WHERE act_id = p_act_id;
+    
+    -- Проверяем, обновилась ли запись
+    GET DIAGNOSTICS v_rows_updated = ROW_COUNT;
+    
+    IF v_rows_updated = 0 THEN
+        p_result_message := 'ОШИБКА: Не удалось обновить акт вывоза';
+    ELSE
+        p_result_message := 'УСПЕХ: Вес акта №' || p_act_id || ' изменен с ' || 
+                           v_old_weight || ' кг на ' || p_new_weight_kg || ' кг';
+    END IF;
+END;
+$$;
+
+-- Комментарий
+COMMENT ON PROCEDURE "Martynovich2261".sp_update_removal_weight 
+IS 'Обновляет вес существующего акта вывоза';
+```
