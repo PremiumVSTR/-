@@ -365,3 +365,13 @@ $$;
 COMMENT ON PROCEDURE "Martynovich2261".sp_update_removal_weight 
 IS 'Обновляет вес существующего акта вывоза';
 ```
+# ПРОВЕРКА РАБОТЫ:
+## 1. Проверка представлений:
+<img width="861" height="622" alt="image" src="https://github.com/user-attachments/assets/db9c5046-1416-4315-9080-28838b8a86c1" />
+<img width="1014" height="584" alt="image" src="https://github.com/user-attachments/assets/0b183855-32f2-4c6d-b4d1-340e7dfcb110" />
+## 2. Проверка процедур:
+<img width="625" height="495" alt="image" src="https://github.com/user-attachments/assets/64543218-997b-4b92-9e11-68ed4c8ce7d8" />
+<img width="719" height="451" alt="image" src="https://github.com/user-attachments/assets/39d106eb-14d5-4659-97fb-6958583dc714" />
+<img width="486" height="552" alt="image" src="https://github.com/user-attachments/assets/170ce07b-9473-457e-b926-6159343575af" />
+<img width="594" height="378" alt="image" src="https://github.com/user-attachments/assets/631c3265-0173-4c73-ba0f-121c24d96ea8" />
+
