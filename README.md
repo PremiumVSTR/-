@@ -214,7 +214,8 @@ CREATE INDEX idx_waste_type ON waste_removal_act(waste_type);
 
 ## ПРОЦЕДУРА 1: Добавить новый акт вывоза
 <img width="706" height="715" alt="image" src="https://github.com/user-attachments/assets/929161f2-f2ab-4796-9065-46b8d307e4a8" />
-```sql
+
+```
 CREATE OR REPLACE VIEW "Martynovich2261".vw_point_schedule AS
 SELECT 
     cp.point_id AS "ID площадки",
@@ -312,7 +313,7 @@ IS 'Добавляет новый акт вывоза в базу данных �
 ## ПРОЦЕДУРА 2: Обновить вес акта вывоза
 <img width="674" height="337" alt="image" src="https://github.com/user-attachments/assets/ded1b267-0578-41e1-8d46-f0822f9173fe" />
 
-```sql
+```
 CREATE OR REPLACE PROCEDURE "Martynovich2261".sp_update_removal_weight(
     p_act_id INTEGER,
     p_new_weight_kg DECIMAL(10,2),
