@@ -198,8 +198,9 @@ CREATE INDEX idx_waste_type ON waste_removal_act(waste_type);
 <img width="1115" height="740" alt="image" src="https://github.com/user-attachments/assets/5b26ba9d-4efa-466d-b364-80e0bd23b073" />
 
 ## Запрос 1: Отчет по общему весу вывезенных отходов каждого типа за месяц по районам (отсортированный по убыванию веса)
-<img width="703" height="530" alt="image" src="https://github.com/user-attachments/assets/e3adf89b-0115-4caa-bee3-8a33fa1032ec" />
+<img width="1260" height="752" alt="image" src="https://github.com/user-attachments/assets/c78c6f88-1560-4a1a-ac66-5e117ed868ef" />
 
 ## Запрос 2: График и частота вывоза для заданной контейнерной площадки
-<img width="1174" height="546" alt="image" src="https://github.com/user-attachments/assets/be1221f0-1401-414b-85a5-955db7282f84" />
+<img width="989" height="756" alt="image" src="https://github.com/user-attachments/assets/39d731c9-151e-413b-aa28-a48d61020ec9" />
+
 
