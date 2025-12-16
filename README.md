@@ -307,7 +307,6 @@ $$;
 -- Комментарий
 COMMENT ON PROCEDURE "Martynovich2261".sp_add_removal 
 IS 'Добавляет новый акт вывоза в базу данных с проверкой данных';
-
 ```
 ## ПРОЦЕДУРА 2: Обновить вес акта вывоза
 <img width="674" height="337" alt="image" src="https://github.com/user-attachments/assets/ded1b267-0578-41e1-8d46-f0822f9173fe" />
