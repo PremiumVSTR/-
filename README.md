@@ -186,7 +186,10 @@ CREATE INDEX idx_waste_type ON waste_removal_act(waste_type);
 <img width="899" height="543" alt="image" src="https://github.com/user-attachments/assets/f71642e4-a868-46d4-b574-38959e004476" />
 
 ## Заполнение таблиц
-<img width="790" height="596" alt="image" src="https://github.com/user-attachments/assets/d2d12a7f-77c6-4082-92ed-8db16cdba5b2" />
+<img width="687" height="737" alt="image" src="https://github.com/user-attachments/assets/b69aaee9-83be-4919-aa08-be0db60c983a" />
+<img width="701" height="352" alt="image" src="https://github.com/user-attachments/assets/3996c84d-6604-4b19-824d-ff7c0f2c8cea" />
+<img width="862" height="758" alt="image" src="https://github.com/user-attachments/assets/c1fbdb7d-bfab-40cf-a362-db7ce669661e" />
+<img width="859" height="743" alt="image" src="https://github.com/user-attachments/assets/0ba6b0a9-0408-457e-90c4-77831c354f3b" />
 
 ## Проверка что данные были введены
 
