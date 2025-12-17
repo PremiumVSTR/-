@@ -425,3 +425,6 @@ IS 'Обновляет вес существующего акта вывоза';
 2. Таблица аудита
 
 <img width="502" height="338" alt="image" src="https://github.com/user-attachments/assets/d514896c-0325-41f2-9783-433de1a10709" />
+
+3. Функция и триггер аудита
+<img width="732" height="311" alt="image" src="https://github.com/user-attachments/assets/0057a745-dc7e-4381-9f29-51e5a14e6701" />
