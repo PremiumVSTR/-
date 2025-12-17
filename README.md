@@ -380,12 +380,19 @@ IS 'Обновляет вес существующего акта вывоза';
 
 # Лабораторная работа 4
 ## 1. Генерация 20,000 контейнерных площадок
-<img width="870" height="341" alt="image" src="https://github.com/user-attachments/assets/97b773b0-f1af-4f3c-9e2d-06ad600bed3a" />
+<img width="743" height="701" alt="image" src="https://github.com/user-attachments/assets/c5f9014d-3394-44b9-b0d7-fc89f093d614" />
+
+<img width="563" height="174" alt="image" src="https://github.com/user-attachments/assets/c942c79c-2dd9-49a1-b732-aa3412a456cf" />
 
 ## 2. Генерация 20,000 операторов
-<img width="620" height="234" alt="image" src="https://github.com/user-attachments/assets/0495fa1a-ab81-4285-8cab-60727c326ed8" />
+<img width="764" height="631" alt="image" src="https://github.com/user-attachments/assets/c72cd123-a468-450a-b5d1-8b25bb06fd33" />
+
+<img width="549" height="185" alt="image" src="https://github.com/user-attachments/assets/c731b752-d0de-49d7-963c-d253fdae8f82" />
 
 ## 3. Генерация 20,000 актов вывоза
-<img width="622" height="555" alt="image" src="https://github.com/user-attachments/assets/3eb6fdbd-b7dc-41b5-a712-04b8ef3901c7" />
+<img width="777" height="747" alt="image" src="https://github.com/user-attachments/assets/fb38cbfb-f7e6-49a3-88c7-5dc2a06775b5" />
+
+<img width="565" height="189" alt="image" src="https://github.com/user-attachments/assets/d5afd117-6f66-430f-9697-c1e01504bd29" />
+
 
 
