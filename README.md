@@ -415,4 +415,5 @@ IS 'Обновляет вес существующего акта вывоза';
 2. График для площадки
 <img width="962" height="476" alt="image" src="https://github.com/user-attachments/assets/8b3e5e14-72c7-4ee0-9d3f-dcd1e68a680c" />
 
+Итог: с индексами производительность быстрее
 
