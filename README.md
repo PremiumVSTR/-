@@ -405,10 +405,12 @@ IS 'Обновляет вес существующего акта вывоза';
 Оптимизируем
 <img width="1032" height="150" alt="image" src="https://github.com/user-attachments/assets/33828e1a-e71b-45f9-a555-1ab65beafb4d" />
 
+<img width="721" height="150" alt="image" src="https://github.com/user-attachments/assets/6aa12ac8-986e-4428-b714-6f2620b2ec67" />
+
 Итог:
 
 1. Основной отчет за месяц
-<img width="807" height="712" alt="image" src="https://github.com/user-attachments/assets/be6e1aae-55d8-4a51-b718-8396a45dd332" />
+<img width="810" height="709" alt="image" src="https://github.com/user-attachments/assets/b4a69978-c01d-4f5f-a997-91e619fe9d5c" />
 
 2. График для площадки
 <img width="962" height="476" alt="image" src="https://github.com/user-attachments/assets/8b3e5e14-72c7-4ee0-9d3f-dcd1e68a680c" />
