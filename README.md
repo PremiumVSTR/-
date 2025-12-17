@@ -79,7 +79,6 @@ CREATE TABLE collection_point (
     point_id SERIAL PRIMARY KEY,
     address VARCHAR(500) UNIQUE NOT NULL,
     district VARCHAR(100) NOT NULL,
-    is_active BOOLEAN DEFAULT TRUE
 );
 
 -- 2. Таблица операторов вывоза
