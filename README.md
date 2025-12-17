@@ -428,3 +428,18 @@ IS 'Обновляет вес существующего акта вывоза';
 
 3. Функция и триггер аудита
 <img width="732" height="311" alt="image" src="https://github.com/user-attachments/assets/0057a745-dc7e-4381-9f29-51e5a14e6701" />
+<img width="677" height="256" alt="image" src="https://github.com/user-attachments/assets/945cc388-2d0b-4459-88e7-256d4e4091d3" />
+
+Проверка триггера
+<img width="1003" height="340" alt="image" src="https://github.com/user-attachments/assets/b523a264-fdb9-4856-ba34-48edfb63c5d8" />
+<img width="820" height="386" alt="image" src="https://github.com/user-attachments/assets/d81514f5-4358-4d01-b7d1-bc3980ed552a" />
+
+4. Триггер INSERT
+<img width="739" height="405" alt="image" src="https://github.com/user-attachments/assets/ab3d6981-2501-4cc5-89b5-9e21a46899b9" />
+
+5. Триггер UPDATE
+<img width="753" height="394" alt="image" src="https://github.com/user-attachments/assets/5625c4de-793e-4072-b994-4f49000a76b4" />
+
+6. Триггер DELETE
+<img width="755" height="417" alt="image" src="https://github.com/user-attachments/assets/bd554619-7a46-46e5-a7d7-34c772fb84e6" />
+
