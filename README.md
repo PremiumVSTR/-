@@ -378,5 +378,14 @@ IS 'Обновляет вес существующего акта вывоза';
 <img width="536" height="643" alt="image" src="https://github.com/user-attachments/assets/4a44b5ee-7fb3-404d-bebf-914f579cf0a5" />
 <img width="480" height="607" alt="image" src="https://github.com/user-attachments/assets/c1fe4fe2-e9e3-454f-be3d-1a5dacacc4e6" />
 
+# Лабораторная работа 4
+## 1. Генерация 20,000 контейнерных площадок
+<img width="870" height="341" alt="image" src="https://github.com/user-attachments/assets/97b773b0-f1af-4f3c-9e2d-06ad600bed3a" />
+
+## 2. Генерация 20,000 операторов
+<img width="620" height="234" alt="image" src="https://github.com/user-attachments/assets/0495fa1a-ab81-4285-8cab-60727c326ed8" />
+
+## 3. Генерация 20,000 актов вывоза
+<img width="622" height="555" alt="image" src="https://github.com/user-attachments/assets/3eb6fdbd-b7dc-41b5-a712-04b8ef3901c7" />
 
 
