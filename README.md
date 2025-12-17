@@ -420,9 +420,8 @@ IS 'Обновляет вес существующего акта вывоза';
 #  Лабораторная работа 5
 
 1. Триггер каскадного удаления
-<img width="502" height="338" alt="image" src="https://github.com/user-attachments/assets/d514896c-0325-41f2-9783-433de1a10709" />
-
-2. Таблица аудита
 <img width="766" height="345" alt="image" src="https://github.com/user-attachments/assets/aa35af72-a4fa-48f3-84cd-07cd8577a188" />
 
+2. Таблица аудита
 
+<img width="502" height="338" alt="image" src="https://github.com/user-attachments/assets/d514896c-0325-41f2-9783-433de1a10709" />
